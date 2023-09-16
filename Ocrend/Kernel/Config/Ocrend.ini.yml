@@ -1,0 +1,191 @@
+# This file is part of the Ocrend Framewok 3 package.
+#
+# (c) Ocrend Software <info@ocrend.com>
+#
+# For the full copyright and license information, please view the LICENS
+# file that was distributed with this source code.
+
+# Configuración de la base de datos
+database:
+  default_driver: mysql
+  drivers:
+    mysql:
+      host: 172.16.210.4
+      user: admin_hmetro
+      pass: 1501128480
+      name: admin_hmetro
+      port: default
+      socket: default
+    oracle:
+      dbname: conclina
+      user: mchang
+      password: 1501508480
+      port: 1521
+      host: 172.16.3.247
+      servicename: conclina
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracleMedora:
+      dbname: rad
+      user: medora
+      password: geris8615rad
+      port: 1521
+      host: 172.16.1.24
+      driver: oci8
+      charset: UTF8
+    oracle_metrored:
+      dbname: metroamb
+      user: mchang
+      password: mchang5080
+      port: 1521
+      host: 172.16.3.247
+      servicename: metroamb
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracle_pruebas:
+      dbname: desa
+      user: gema
+      password: gemad15
+      port: 1521
+      host: 172.16.9.77
+      driver: oci8
+      charset: UTF8
+    oracle_mv:
+      servicename: PROD
+      service: true
+      dbname: PROD
+      user: DBAMV
+      password: metro@2020
+      port: 1521
+      host: 172.16.253.23
+      driver: oci8
+      charset: UTF8
+    oracle_mv_trn:
+      servicename: PRU
+      service: true
+      dbname: PRU
+      user: METROCONSULTA
+      password: MrC$*4422$
+      port: 1521
+      host: 172.16.253.60
+      driver: oci8
+      charset: UTF8
+    oracle_mtr:
+      dbname: xe
+      user: mchang
+      password: 1501508480
+      port: 1526
+      host: 172.16.210.4
+      servicename: xe
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracleMVEditor:
+      dbname: PROD
+      user: METROCONSULTA
+      password: MrC$*4422$
+      port: 1521
+      host: 172.16.253.24
+      servicename: PROD
+      service: true
+      driver: oci8
+      charset: UTF8
+    buxys:
+      dbname: buxys
+      user: HmetroIntegra
+      password: HmetroIntegra1
+      port: 1521
+      host: 172.16.253.20
+      driver: oci8
+      charset: UTF8
+    sqlite3:
+      file: '___ROOT___Ocrend/Kernel/Database/Drivers/Sqlite/db.sqlite3'
+
+# Configuración de servidor SMTP
+mailer:
+  host: smtp.trx.icommarketing.com
+  user: 75032b22-cf9b-4fd7-8eb4-e7446c8b118b
+  pass: 75032b22-cf9b-4fd7-8eb4-e7446c8b118b
+  from: web@hmetro.med.ec
+  port: 587
+  logo:
+
+# Configuración de twig
+twig:
+  cache: false
+  compiled_dir: false # ./app/templates/.compiled/
+  charset: UTF-8
+  strict_variables: false
+  autoescape: html
+
+# Configuración del sitio
+build:
+  production: false
+  name: Web API REST v1.0.0
+  url: http://api.hospitalmetropolitano.org/
+  ducumentosRetencionesProv: '//172.16.3.125/face/CONCLINARETENCIONES/TestTxtXml/Procesadas/Autorizados/ComprobantesRetenciones/'
+  timezone: America/Guayaquil
+  version: 3.0.1
+
+# Configuración de cookies
+sessions:
+  lifetime: 3600
+  user_cookie:
+    enable: false
+    key_encrypt: X8f3p@9Vde0WvKauzI8CMX
+    lifetime: 3600
+
+# Configuración de la api
+api:
+  active: true
+  origin: '*'
+  url: https://api.hospitalmetropolitano.org/v1/
+
+# Configuración de ruta
+router:
+  ssl: false
+  path: api.hospitalmetropolitano.org/
+
+# Errores Globales de la api  ERROR MAPERAR ERRORES DE PAGOS 4020
+errors:
+  notParameters:
+    message: ¡Error! No estan definidos todos los parámetros para este request.
+    code: 4000
+  notDNI:
+    message: ¡Error! Cédula RUC o Pasaporte es obligatorio.
+    code: 4001
+  notEmailRegister:
+    message: ¡Error! Cédula RUC o Pasaporte ingresado no tiene un correo electrónico registrado para crear una cuenta electrónica.
+    code: 4002
+  notAvalibleDNI:
+    message: ¡Error! Cédula RUC o Pasaporte ingresado no tiene un formato válido.
+    code: 4003
+  notExistedGema:
+    message: ¡Error! Cédula RUC o Pasaporte ingresado no existe en nuestra base de datos o presenta inconsistencias.
+    code: 4004
+  notFormatPass:
+    message: ¡Error! Pasaporte o Documento extrangero no puede ser mayor a 25 caracteres.
+    code: 4005
+  notActiveAccount:
+    message: '¡Error! Cuenta electrónica sin activar. Active su cuenta.'
+    code: 4007
+  notRegisterAccount:
+    message: ¡Error! Cuenta electrónica no esta registrada.
+    code: 4006
+  AccountisRegistered:
+    message: ¡Error! Cuenta electrónica ya esta registrada.
+    code: 4008
+  notFormatEmail:
+    message: ¡Error! Correo electrónico no tiene un formato válido.
+    code: 4009
+  incorrectMailRegister:
+    message: ¡Error! Correo electrónico no esta asociado al usuario.
+    code: 4011
+  incorrectPassword:
+    message: ¡Error! Contraseña incorrecta.
+    code: 4013
+  notQsecAccount:
+    message: '¡Error! Preguntas de Seguridad sin configurar.'
+    code: 4014

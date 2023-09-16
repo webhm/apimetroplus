@@ -1,0 +1,5 @@
+/app/templates/.compiled/**/*.php
+
+/v1/premedicos/**/*.json
+
+/app/templates/.compiled/**/*.php

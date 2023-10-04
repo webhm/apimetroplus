@@ -48,7 +48,7 @@ class ActiveDirectoryHM extends Models implements IModels
             'port' => 389,
             'base_dn' => 'dc=hm,dc=med,dc=ec',
             'username' => 'mchang@hm.med.ec',
-            'password' => 'Mmach90000',
+            'password' => 'Mmch!!@@11',
 
             // Optional Configuration Options
             'use_ssl' => false,
@@ -98,7 +98,7 @@ class ActiveDirectoryHM extends Models implements IModels
             'port' => 389,
             'base_dn' => 'dc=hm,dc=med,dc=ec',
             'username' => 'mchang@hm.med.ec',
-            'password' => 'Mmach90000',
+            'password' => 'Mmch!!@@11',
 
             // Optional Configuration Options
             'use_ssl' => false,
@@ -361,7 +361,7 @@ class ActiveDirectoryHM extends Models implements IModels
 
         $user = User::find('cn=Martin Chang,ou=Sistemas,dc=hm,dc=med,dc=ec');
 
-        $user->unicodepwd = ['Mmach90000', 'M90mach100'];
+        $user->unicodepwd = ['Mmch!!@@11', 'M90mach100'];
 
         try {
             $user->save();
@@ -409,7 +409,7 @@ class ActiveDirectoryHM extends Models implements IModels
             'port' => 636,
             'base_dn' => 'dc=hm,dc=med,dc=ec',
             'username' => 'mchang@hm.med.ec',
-            'password' => 'Mmach90000',
+            'password' => 'Mmch!!@@11',
 
             // Optional Configuration Options
             'use_ssl' => true,
@@ -433,7 +433,7 @@ class ActiveDirectoryHM extends Models implements IModels
         $user = (new User)->inside('ou=Sistemas,dc=hm,dc=med,dc=ec');
 
         $user->cn = 'John Doe';
-        $user->unicodePwd = 'Mmach90000';
+        $user->unicodePwd = 'Mmch!!@@11';
         $user->samaccountname = 'jdoe';
         $user->userPrincipalName = 'jdoe@hm.med.ec';
 

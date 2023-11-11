@@ -8,18 +8,46 @@
 # Configuración de la base de datos
 database:
   default_driver: mysql
+  default_driver_auth: mysqlAuth
   drivers:
     mysql:
-      host: 172.16.210.4
+      host: localhost
       user: admin_hmetro
       pass: 1501128480
       name: admin_hmetro
+      port: default
+      socket: default
+    mysqlAuth:
+      host: localhost
+      user: admin_apiauth
+      pass: 1501128480
+      name: admin_apiauth
       port: default
       socket: default
     oracle:
       dbname: conclina
       user: mchang
       password: 1501508480
+      port: 1521
+      host: 172.16.3.247
+      servicename: conclina
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracleNaf:
+      dbname: conclina
+      user: naf
+      password: fan0920
+      port: 1521
+      host: 172.16.3.247
+      servicename: conclina
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracleReliv:
+      dbname: conclina
+      user: reliv
+      password: HM$$reP22
       port: 1521
       host: 172.16.3.247
       servicename: conclina
@@ -56,8 +84,8 @@ database:
       servicename: PROD
       service: true
       dbname: PROD
-      user: DBAMV
-      password: metro@2020
+      user: METROCONSULTA
+      password: MrC$*4422$
       port: 1521
       host: 172.16.253.23
       driver: oci8
@@ -66,6 +94,16 @@ database:
       servicename: PRU
       service: true
       dbname: PRU
+      user: METROCONSULTA
+      password: MrC$*4422$
+      port: 1521
+      host: 172.16.253.60
+      driver: oci8
+      charset: UTF8
+    oracle_mv_sml:
+      servicename: SIM
+      service: true
+      dbname: SIM
       user: METROCONSULTA
       password: MrC$*4422$
       port: 1521
@@ -83,13 +121,13 @@ database:
       driver: oci8
       charset: UTF8
     oracleMVEditor:
+      servicename: PROD
+      service: true
       dbname: PROD
       user: METROCONSULTA
       password: MrC$*4422$
       port: 1521
-      host: 172.16.253.24
-      servicename: PROD
-      service: true
+      host: 172.16.253.23
       driver: oci8
       charset: UTF8
     buxys:
@@ -106,9 +144,9 @@ database:
 # Configuración de servidor SMTP
 mailer:
   host: smtp.trx.icommarketing.com
-  user: 75032b22-cf9b-4fd7-8eb4-e7446c8b118b
-  pass: 75032b22-cf9b-4fd7-8eb4-e7446c8b118b
-  from: web@hmetro.med.ec
+  user: 7f14b454-8df3-4e75-9def-30e45cab59e9
+  pass: 7f14b454-8df3-4e75-9def-30e45cab59e9
+  from: metrovirtual@hospitalmetropolitano.org
   port: 587
   logo:
 
@@ -123,11 +161,11 @@ twig:
 # Configuración del sitio
 build:
   production: false
-  name: Web API REST v1.0.0
-  url: http://api.hospitalmetropolitano.org/
+  name: API REST v2.0.0
+  url: //api.hospitalmetropolitano.org/
   ducumentosRetencionesProv: '//172.16.3.125/face/CONCLINARETENCIONES/TestTxtXml/Procesadas/Autorizados/ComprobantesRetenciones/'
   timezone: America/Guayaquil
-  version: 3.0.1
+  version: 2.0.0
 
 # Configuración de cookies
 sessions:
@@ -141,7 +179,7 @@ sessions:
 api:
   active: true
   origin: '*'
-  url: https://api.hospitalmetropolitano.org/v1/
+  url: https://api.hospitalmetropolitano.org/v2/
 
 # Configuración de ruta
 router:

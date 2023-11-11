@@ -17,6 +17,12 @@ $app->get('/', function () use ($app) {
 });
 
 # Usuarios
+$app->get('/mis-pacientes', function () use ($app) {
+    $m = new ModelUsuarios\Pacientes;
+    return $app->json($m->getMisPacientes());
+});
+
+# Usuarios
 $app->get('/usuarios/metroplus', function () use ($app) {
     $m = new ModelUsuarios\ActiveDirectoryHM;
     return $app->json($m->getGruposAD());

@@ -772,104 +772,20 @@ class Pacientes extends Models implements IModels
             global  $http;
 
             # $this->getAuthorization();
-
-            return  $this->getPacientesInterconsulta(0);
-
-
             $codMedico = (int) "0";
 
-            # seteo de valores para paginacion
-            $fecha = date('d-m-Y');
+            $resultados_ema = $this->getPacientesResidentes($codMedico, '', 'EMA');
+            $resultados_hpn = $this->getPacientesResidentes($codMedico, '', 'HPN');
 
-            $this->start = (int) $http->query->get('start');
-
-            $this->length = (int) $http->query->get('length');
-
-            if ($this->start >= 10) {
-                $this->length = $this->start + $this->length;
-            }
-
-            $_searchField = (bool) $http->query->get('searchField');
-
-            # CONSULTA PACIENTES
-
-            if ($_searchField != false) {
-
-                $this->searchField = $this->quitar_tildes(mb_strtoupper($this->sanear_string($http->query->get('searchField')), 'UTF-8'));
-
-                $this->searchField = str_replace(" ", "%", $this->searchField);
-
-                // Es Residente
-                if ($codMedico == "0") {
-
-                    $resultados_ema = $this->getPacientesResidentes($codMedico, $this->searchField, 'EMA');
-                    $resultados_hpn = $this->getPacientesResidentes($codMedico, $this->searchField, 'HPN');
-                } else {
-
-                    $resultados_tra = $this->getPacientesResidentes($codMedico, $this->searchField);
-                    $resultados_inter = $this->getPacientesInterconsulta($codMedico, $this->searchField);
-                }
-            } elseif ($_searchField != false && $this->isRange($http->query->get('search')['value'])) {
-
-                $this->searchField = explode('-', $http->query->get('search')['value']);
-
-                $desde = $this->searchField[1]; // Valores para busqueda de desde rango de fechas
-                $hasta = $this->searchField[2]; // valor de busqueda para hasta rango de fechas
-
-                $sql = " SELECT *
-                FROM (
-                SELECT b.*, ROWNUM AS NUM
-                FROM (
-                    SELECT *
-                    FROM WEB3_RESULTADOS_LAB NOLOCK WHERE TOT_SC != TOD_DC
-                    AND FECHA >= '$desde'
-                    AND FECHA <= '$hasta'
-                    ORDER BY SC DESC
-                ) b
-                WHERE ROWNUM <= " . $this->length . "
-                )
-                WHERE NUM > " . $this->start . "
-                ";
-            } else {
-
-                if ($codMedico == "0") {
-
-                    $resultados_ema = $this->getPacientesResidentes($codMedico, '', 'EMA');
-                    $resultados_hpn = $this->getPacientesResidentes($codMedico, '', 'HPN');
-                } else {
-
-                    $resultados_tra = $this->getPacientesResidentes($codMedico);
-                    $resultados_inter = $this->getPacientesInterconsulta($codMedico);
-                }
-            }
-
-
-
-            if ($codMedico == "0") {
-
-                # Devolver Información
-                return array(
-                    'status' => true,
-                    'dataTra' => $resultados_ema,
-                    'totalTra' => count($resultados_ema),
-                    'dataInter' => $resultados_hpn,
-                    'totalInter' => count($resultados_hpn),
-                    'codMedico' => $codMedico,
-
-                );
-            } else {
-
-                # Devolver Información
-                return array(
-                    'status' => true,
-                    'dataTra' => $resultados_tra,
-                    'totalTra' => count($resultados_tra),
-                    'dataInter' => $resultados_inter,
-                    'totalInter' => count($resultados_inter),
-                    'codMedico' => $codMedico,
-
-                );
-            }
+            # Devolver Información
+            return array(
+                'status' => true,
+                'dataTra' => $resultados_ema,
+                'totalTra' => count($resultados_ema),
+                'dataInter' => $resultados_hpn,
+                'totalInter' => count($resultados_hpn),
+                'codMedico' => $codMedico,
+            );
         } catch (ModelsException $e) {
 
             return array(
